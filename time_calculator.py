@@ -1,32 +1,34 @@
 from datetime import datetime
 
-# Chiede all'utente di inserire la data di nascita
-data_nascita_str = input("Inserisci la tua data di nascita (giorno/mese/anno): ")
+from datetime import datetime
 
-# Converte la stringa in un oggetto datetime
+# Ask the user to enter their date of birth
+date_birth_str = input("Insert your birthday (giorno/mese/anno): ")
+
+# Converts the string into a datetime object
 try:
-    data_nascita = datetime.strptime(data_nascita_str, "%d/%m/%Y")
+    date_birth = datetime.strptime(date_birth_str, "%d/%m/%Y")
 except ValueError:
-    print("Formato della data non corretto. Usa il formato giorno/mese/anno.")
+    print("Incorrect date format. Use the day/month/year format.")
     exit()
 
-# Ottiene la data corrente
-oggi = datetime.now()
+# Get the current date
+today = datetime.now()
 
-# Calcola la differenza in anni, mesi e giorni
-anni = oggi.year - data_nascita.year
-mesi = oggi.month - data_nascita.month
-giorni = oggi.day - data_nascita.day
+# Calculate the difference in years, months, and days
+years = today.year - date_birth.year
+months = today.month - date_birth.month
+days = today.day - date_birth.day
 
-# Se i giorni sono negativi, significa che l'anno corrente non ha ancora raggiunto il mese di nascita
-if giorni < 0:
-    mesi -= 1
-    giorni += 30  # Questa è una semplificazione, poiché i mesi non hanno tutti 30 giorni
+# If the days are negative, it means that the current day hasn't been reached yet this month
+if days < 0:
+    months -= 1
+    days += 30  # This is a simplification, since not all months have 30 days
 
-# Se i mesi sono negativi, significa che l'anno corrente non ha ancora raggiunto il mese di nascita
-if mesi < 0:
-    anni -= 1
-    mesi += 12
+# If the months are negative, it means that the current year hasn't reached the birth month yet
+if months < 0:
+    years -= 1
+    months += 12
 
-# Stampa il risultato
-print(f"Hai {anni} anni, {mesi} mesi e {giorni} giorni.")
+# Print the result
+print(f"You are {years} years, {months} months, and {days} days old.")
